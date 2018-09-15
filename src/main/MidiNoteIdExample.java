@@ -34,7 +34,6 @@ public class MidiNoteIdExample {
         new Thread(osc).start();
         new Thread(m).start();
         OscillatorFrequencyControlAdapter f = new OscillatorFrequencyControlAdapter(osc);
-        f.setValuePercentage(10);
         PrefixedTerminalMultiControl control = new PrefixedTerminalMultiControl();
         control.addControl("f", new BasicFloatTerminalControl(f));
         control.addControl("n", new NoteNamesTerminalControl(f));

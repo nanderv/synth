@@ -35,10 +35,10 @@ public class Speaker implements ConsumerModule {
         line.open(af, SAMPLING_RATE);
         line.start();
         while(true){
-            byte[] bytes = new byte[8];
+            byte[] bytes = new byte[4];
             if(stream != null) {
                 stream.read(bytes);
-                line.write(bytes,0,8);
+                line.write(bytes,0,4);
 
             }
         }

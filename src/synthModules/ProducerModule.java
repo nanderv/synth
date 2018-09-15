@@ -13,7 +13,7 @@ public abstract class ProducerModule implements Runnable {
     public void connect(ConsumerModule module){
         try {
             stream = new PipedOutputStream();
-            otherStream = new PipedInputStream(stream, 8);
+            otherStream = new PipedInputStream(stream, 16);
             module.setByteStream(otherStream);
         } catch (IOException e) {
             e.printStackTrace();
