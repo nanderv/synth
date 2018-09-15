@@ -1,3 +1,6 @@
+package SynthModules.Oscillators;
+
+import main.TestPlay;
 
 public class SineOscillator extends Oscillator {
     public SineOscillator(float freq) {
@@ -5,7 +8,7 @@ public class SineOscillator extends Oscillator {
     }
 
     public byte[] nextSample(int samples){
-        float period = (float)TestPlay.SAMPLE_RATE / freq;
+        float period = (float) TestPlay.SAMPLE_RATE / freq;
         byte[] sampleArray = new byte[samples];
 
 
