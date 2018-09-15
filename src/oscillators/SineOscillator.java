@@ -1,11 +1,12 @@
+package oscillators;
 
 public class SineOscillator extends Oscillator {
-    public SineOscillator(float freq) {
-        super(freq);
+    public SineOscillator(int sampleRate, float freq) {
+        super(sampleRate, freq);
     }
 
     public byte[] nextSample(int samples){
-        float period = (float)TestPlay.SAMPLE_RATE / freq;
+        float period = (float) sampleRate / freq;
         byte[] sampleArray = new byte[samples];
 
 

@@ -1,3 +1,5 @@
+package utils;
+
 public class Note {
 
     public static final float FREQ_A = 440;

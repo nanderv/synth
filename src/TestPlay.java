@@ -1,3 +1,7 @@
+import oscillators.Oscillator;
+import oscillators.TriangleOscillator;
+import utils.Note;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
@@ -27,7 +31,7 @@ public class TestPlay {
         SourceDataLine line = AudioSystem.getSourceDataLine(af);
         line.open(af, SAMPLE_RATE);
         line.start();
-        Oscillator osc = new TriangleOscillator(440);
+        Oscillator osc = new TriangleOscillator(SAMPLE_RATE, Note.FREQ_A);
 
         boolean forwardNotBack = true;
         float freq = 110;
