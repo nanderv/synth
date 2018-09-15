@@ -19,6 +19,7 @@ public abstract class Oscillator extends ProducerModule {
         currentSample =  (int) (currentSample* this.freq / freq);
         this.freq = freq;
     }
+
     @Override
     public void run() {
         byte[] bytes;

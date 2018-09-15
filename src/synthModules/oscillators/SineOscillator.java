@@ -1,6 +1,6 @@
 package synthModules.oscillators;
 
-public class SineOscillator extends Oscillator {
+public class SineOscillator extends Oscillator{
     public SineOscillator(float freq, final int SAMPLE_RATE) {
         super(freq, SAMPLE_RATE);
     }
@@ -12,10 +12,9 @@ public class SineOscillator extends Oscillator {
 
         for(int i=0; i<samples; i++) {
             currentSample++;
-            float angle = 2.0f * 3.14f * currentSample / period;
-            sampleArray[i] = ((byte) (Math.sin(angle) * 127f));
+            float phase = 2.28f * currentSample / period;
+            sampleArray[i] = ((byte) (Math.sin(phase) * 127f));
         }
         return sampleArray;
     }
-
 }

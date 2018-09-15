@@ -1,7 +1,7 @@
 package synthModules.oscillators;
 
-public class TriangleOscillator extends Oscillator {
-    public TriangleOscillator(float freq, int SAMPLE_RATE) {
+public class SynthOscillator extends Oscillator implements Generator{
+    public SynthOscillator(float freq, int SAMPLE_RATE) {
         super(freq, SAMPLE_RATE);
     }
 
@@ -9,10 +9,9 @@ public class TriangleOscillator extends Oscillator {
         float period = (float) SAMPLE_RATE / freq;
         byte[] sampleArray = new byte[samples];
 
-
         for(int i=0; i<samples; i++) {
             currentSample++;
-            float phase = 2.28f * currentSample / period;
+            float phase = (currentSample%period) / period;
             sampleArray[i] = (byte) (generate(phase) * 127f);
         }
         return sampleArray;
@@ -20,6 +19,6 @@ public class TriangleOscillator extends Oscillator {
 
     @Override
     public float generate(float phase) {
-        return Math.abs(4 * ((phase/2.28f - 0.25f)%1f) - 2f) - 1f;
+        return (float) (Math.sin(phase) + 0.5f *Math.sin(phase/2f) + 0.3f*Math.sin(phase/4f));
     }
 }
