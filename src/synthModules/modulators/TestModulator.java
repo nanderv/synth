@@ -1,12 +1,7 @@
 package synthModules.modulators;
 
-import synthModules.ConsumerModule;
-import synthModules.ProducerModule;
-
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PipedInputStream;
-import java.nio.channels.Pipe;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -30,7 +25,6 @@ public class TestModulator extends Modulator {
         }
     }
 
-
     @Override
     public void run() {
         byte[] bytes = new byte[1];
@@ -45,9 +39,6 @@ public class TestModulator extends Modulator {
                         samp *= (bytes2[0] / 127.0f); //(byte) ((bytes[0] + 128 ) * 2 % 256 - 128);
                     }
                     stream.write(samp);
-
-
-
                 }
             } catch (IOException e) {
                 e.printStackTrace();

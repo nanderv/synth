@@ -6,8 +6,10 @@ public abstract class ProducerModule implements Runnable {
     ConsumerModule connectedTo;
     protected PipedOutputStream stream;
     protected PipedInputStream otherStream;
+
     public ProducerModule(){
     }
+
     public void connect(ConsumerModule module){
         try {
             stream = new PipedOutputStream();
@@ -18,6 +20,7 @@ public abstract class ProducerModule implements Runnable {
         }
         connectedTo = module;
     }
+
     public void disconnect(){
         connectedTo.disconnect();
         connectedTo = null;
