@@ -1,4 +1,4 @@
-package SynthModules;
+package synthModules;
 
 import java.io.InputStream;
 

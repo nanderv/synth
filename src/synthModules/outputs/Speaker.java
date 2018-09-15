@@ -1,6 +1,6 @@
-package SynthModules.Outputs;
+package synthModules.outputs;
 
-import SynthModules.ConsumerModule;
+import synthModules.ConsumerModule;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;

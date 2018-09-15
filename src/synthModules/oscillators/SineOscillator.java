@@ -1,6 +1,4 @@
-package SynthModules.Oscillators;
-
-import main.TestPlay;
+package synthModules.oscillators;
 
 public class SineOscillator extends Oscillator {
     public SineOscillator(float freq, final int SAMPLE_RATE) {

@@ -1,6 +1,4 @@
-package SynthModules.Oscillators;
-
-import main.TestPlay;
+package synthModules.oscillators;
 
 public class TriangleOscillator extends Oscillator {
     public TriangleOscillator(float freq, int SAMPLE_RATE) {

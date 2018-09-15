@@ -1,6 +1,6 @@
-package SynthModules.Oscillators;
+package synthModules.oscillators;
 
-import SynthModules.ProducerModule;
+import synthModules.ProducerModule;
 
 import java.io.IOException;
 
