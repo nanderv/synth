@@ -1,9 +1,9 @@
 package controlAdapters;
 
 public abstract class FloatControl {
-    float lowerBound;
-    float upperBound;
-    public FloatControl(float lowerBound, float upperBound){
+    public final float lowerBound;
+    public final float upperBound;
+    public FloatControl(final float lowerBound, final float upperBound){
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
     }
@@ -12,5 +12,7 @@ public abstract class FloatControl {
     public void setValue(float value){
         this.setValueSafely(Math.max(Math.min(upperBound, value), lowerBound));
     }
-
+    public void setValuePercentage(float percentage) {
+        setValue(lowerBound + (upperBound-lowerBound)*percentage/100);
+    }
 }

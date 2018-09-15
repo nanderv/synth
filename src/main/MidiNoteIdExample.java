@@ -1,6 +1,8 @@
 package main;
 
 import control.BasicFloatTerminalControl;
+import control.NoteNamesTerminalControl;
+import control.PrefixedTerminalMultiControl;
 import controlAdapters.OscillatorFrequencyControl;
 import synthModules.ConsumerModule;
 import synthModules.modulators.AddModule;
@@ -15,7 +17,7 @@ import java.io.IOException;
 
 import static utils.Note.FREQ_A;
 
-public class TestNander {
+public class MidiNoteIdExample {
     //
     private static final int SAMPLE_RATE = 44 * 1024;
 
@@ -36,6 +38,10 @@ public class TestNander {
         new Thread(m).start();
         OscillatorFrequencyControl f = new OscillatorFrequencyControl(osc);
         f.setValue(220);
-        new BasicFloatTerminalControl(f).run();
+        f.setValuePercentage(20);
+        PrefixedTerminalMultiControl control = new PrefixedTerminalMultiControl();
+        control.addControl("f", new BasicFloatTerminalControl(f));
+        control.addControl("n", new NoteNamesTerminalControl(f));
+        control.run();
     }
 }
