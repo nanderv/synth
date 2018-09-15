@@ -7,7 +7,7 @@ import java.io.IOException;
 import static main.Config.FREQ_A;
 import static main.Config.SAMPLING_RATE;
 
-public abstract class Oscillator extends ProducerModule {
+public abstract class Oscillator implements ProducerModule {
     float freq;
     int currentSample;
     float period;
@@ -28,29 +28,8 @@ public abstract class Oscillator extends ProducerModule {
         this.period = (float) SAMPLING_RATE / freq;
         return this;
     }
-
-    @Override
-    public void run() {
-        byte[] bytes;
-        while(true){
-
-
-            if(stream != null) {
-                try {
-                    //System.out.println(otherStream.available());
-
-                    int produce = 16;
-                    bytes = nextSample(produce);
-
-                    stream.write(bytes,0,produce);
-//                    System.out.println("here");
-                } catch (IOException e) {
-                    e.printStackTrace();
-
-                }
-            }
-        }
-
+    public byte[] request(int size){
+        return nextSample(size);
     }
 }
 

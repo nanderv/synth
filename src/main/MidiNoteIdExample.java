@@ -6,6 +6,7 @@ import control.PrefixedTerminalMultiControl;
 import controlAdapters.OscillatorFrequencyControlAdapter;
 import synthModules.ConsumerModule;
 import synthModules.oscillators.Oscillator;
+import synthModules.oscillators.SineOscillator;
 import synthModules.oscillators.SquareOscillator;
 import synthModules.outputs.Speaker;
 
@@ -22,21 +23,20 @@ public class MidiNoteIdExample {
     public static void main(String[] args) throws IOException {
 
         Oscillator osc = new SquareOscillator(FREQ_A);
-//        Oscillator osc2 = new SineOscillator(FREQ_A, SAMPLE_RATE);
+       Oscillator osc2 = new SineOscillator(FREQ_A);
 //        Modulator mod = new AddModule();
 
 //        osc2.connect(mod);
 
-        ConsumerModule m = new Speaker();
-        osc.connect(m);
+        Speaker m = new Speaker();
+        m.listenTo(osc);
 
-
-        new Thread(osc).start();
-        new Thread(m).start();
         OscillatorFrequencyControlAdapter f = new OscillatorFrequencyControlAdapter(osc);
         PrefixedTerminalMultiControl control = new PrefixedTerminalMultiControl();
         control.addControl("f", new BasicFloatTerminalControl(f));
         control.addControl("n", new NoteNamesTerminalControl(f));
+
+        new Thread(m).start();
         control.run();
     }
 }

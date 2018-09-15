@@ -27,9 +27,8 @@ public class SynthOscillator extends Oscillator {
 
     public static void main(String[] args) {
         Oscillator osc = new SynthOscillator();
-        ConsumerModule s = new Speaker();
-        osc.connect(s);
-        new Thread(osc).start();
-        new Thread(s).start();
+        Speaker s = new Speaker();
+        s.listenTo(osc);
+        s.run();
     }
 }

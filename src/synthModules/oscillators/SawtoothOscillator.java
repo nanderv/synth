@@ -28,9 +28,8 @@ public class SawtoothOscillator extends Oscillator  {
 
     public static void main(String[] args) {
         Oscillator osc = new SawtoothOscillator();
-        ConsumerModule s = new Speaker();
-        osc.connect(s);
-        new Thread(osc).start();
-        new Thread(s).start();
+        Speaker s = new Speaker();
+        s.listenTo(osc);
+        s.run();
     }
 }
