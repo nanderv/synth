@@ -1,14 +1,14 @@
 package control;
 
-import controlAdapters.FloatControl;
+import controlAdapters.FloatControlAdapter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class BasicFloatTerminalControl implements StringBasedControl {
-    private FloatControl floatControl;
-    public BasicFloatTerminalControl(FloatControl f){
+    private FloatControlAdapter floatControl;
+    public BasicFloatTerminalControl(FloatControlAdapter f){
         floatControl = f;
 
     }

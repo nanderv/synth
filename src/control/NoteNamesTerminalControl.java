@@ -1,6 +1,6 @@
 package control;
 
-import controlAdapters.FloatControl;
+import controlAdapters.FloatControlAdapter;
 import utils.MidiConverter;
 
 import java.io.BufferedReader;
@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class NoteNamesTerminalControl implements StringBasedControl {
-    private FloatControl floatControl;
-    public NoteNamesTerminalControl(FloatControl f){
+    private FloatControlAdapter floatControl;
+    public NoteNamesTerminalControl(FloatControlAdapter f){
         floatControl = f;
 
     }

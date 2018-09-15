@@ -1,9 +1,9 @@
 package controlAdapters;
 
-public abstract class FloatControl {
+public abstract class FloatControlAdapter {
     public final float lowerBound;
     public final float upperBound;
-    public FloatControl(final float lowerBound, final float upperBound){
+    public FloatControlAdapter(final float lowerBound, final float upperBound){
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
     }

@@ -2,9 +2,9 @@ package controlAdapters;
 
 import synthModules.oscillators.Oscillator;
 
-public class OscillatorFrequencyControl extends FloatControl {
+public class OscillatorFrequencyControlAdapter extends FloatControlAdapter {
     private Oscillator oscillator;
-    public OscillatorFrequencyControl(Oscillator o)
+    public OscillatorFrequencyControlAdapter(Oscillator o)
     {
         super(20,20000);
         oscillator = o;
