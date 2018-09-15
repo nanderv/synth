@@ -1,8 +1,8 @@
 package synthModules;
 
-import java.io.InputStream;
+import java.io.PipedInputStream;
 
 public interface ConsumerModule extends Runnable {
     void disconnect();
-    void setByteStream(InputStream stream);
+    void setByteStream(PipedInputStream stream);
 }
