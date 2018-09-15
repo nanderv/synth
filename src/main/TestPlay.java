@@ -12,9 +12,9 @@ public class TestPlay {
     
     public static void main(String[] args) {
 
-        Oscillator osc = new SineOscillator(FREQ_A);
-        Oscillator osc2 = new SineOscillator(FREQ_A/24);
-        Oscillator osc3 = new SineOscillator(0.05f);
+        Oscillator osc = new SineOscillator().setFreq(FREQ_A);
+        Oscillator osc2 = new SineOscillator().setFreq(FREQ_A/24);
+        Oscillator osc3 = new SineOscillator().setFreq(0.05f);
         TestModulator p = new TestModulator();
         TestModulator p2 = new TestModulator();
         ConsumerModule s = new Speaker();

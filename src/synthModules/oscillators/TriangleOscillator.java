@@ -9,10 +9,6 @@ public class TriangleOscillator extends Oscillator {
         super();
     }
 
-    public TriangleOscillator(float freq) {
-        super(freq);
-    }
-
     public byte[] nextSample(int samples){
         byte[] sampleArray = new byte[samples];
 
@@ -20,7 +16,7 @@ public class TriangleOscillator extends Oscillator {
             currentSample++;
             float phase = currentSample / period;
             float value = Math.abs(4 * ((phase - 0.25f)%1f) - 2f) - 1f;
-            sampleArray[i] = (byte) (value * 127f);
+            sampleArray[i] = (byte) (value * amplitude);
         }
         return sampleArray;
     }

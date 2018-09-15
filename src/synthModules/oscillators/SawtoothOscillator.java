@@ -9,10 +9,6 @@ public class SawtoothOscillator extends Oscillator  {
         super();
     }
 
-    public SawtoothOscillator(float freq) {
-        super(freq);
-    }
-
     @Override
     public byte[] nextSample(int samples) {
         byte[] sampleArray = new byte[samples];
@@ -21,7 +17,7 @@ public class SawtoothOscillator extends Oscillator  {
             currentSample++;
             float phase = currentSample / period; //NOTE: no tau used here
             float value = -1 + 2 * phase;
-            sampleArray[i] = (byte) (value * 127f);
+            sampleArray[i] = (byte) (value * amplitude);
         }
         return sampleArray;
     }

@@ -1,16 +1,15 @@
 package synthModules.oscillators;
 
+import main.Config;
 import synthModules.ConsumerModule;
 import synthModules.outputs.Speaker;
+
+import static main.Config.FREQ_A;
 
 public class SineOscillator extends Oscillator{
 
     public SineOscillator() {
         super();
-    }
-
-    public SineOscillator(float freq) {
-        super(freq);
     }
 
     public byte[] nextSample(int samples){
@@ -20,7 +19,7 @@ public class SineOscillator extends Oscillator{
             currentSample++;
             float phase = 6.28f * currentSample / period;
             float value = (float) Math.sin(phase);
-            sampleArray[i] = ((byte) (value * 127f));
+            sampleArray[i] = ((byte) (value * amplitude));
         }
         return sampleArray;
     }

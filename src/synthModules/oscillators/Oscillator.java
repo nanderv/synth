@@ -11,21 +11,27 @@ public abstract class Oscillator extends ProducerModule {
     float freq;
     int currentSample;
     float period;
+    float amplitude;
 
     public abstract byte[] nextSample(int samples);
 
     public Oscillator(){
         setFreq(FREQ_A);
-    }
-
-    public Oscillator(float freq){
-        setFreq(freq);
+        setAmplitude(127f);
     }
 
     public Oscillator setFreq(float freq){
         this.currentSample =  (int) (currentSample* this.freq / freq);
         this.freq = freq;
         this.period = (float) SAMPLING_RATE / freq;
+        return this;
+    }
+
+    /**
+     * @param amplitude in (0f,127f)
+     */
+    public Oscillator setAmplitude(float amplitude){
+        this.amplitude = amplitude;
         return this;
     }
 

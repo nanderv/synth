@@ -9,10 +9,6 @@ public class SquareOscillator extends Oscillator {
         super();
     }
 
-    public SquareOscillator(float freq) {
-        super(freq);
-    }
-
     @Override
     public byte[] nextSample(int samples) {
         byte[] sampleArray = new byte[samples];
@@ -21,7 +17,7 @@ public class SquareOscillator extends Oscillator {
             currentSample++;
             float phase = 6.28f * currentSample / period;
             float value = Math.sin(phase) > 0.0d ? 1f : -1f;
-            sampleArray[i] = (byte) (value * 127f);
+            sampleArray[i] = (byte) (value * amplitude);
         }
         return sampleArray;
     }

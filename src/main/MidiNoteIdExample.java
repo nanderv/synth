@@ -21,7 +21,7 @@ public class MidiNoteIdExample {
 
     public static void main(String[] args) throws IOException {
 
-        Oscillator osc = new SquareOscillator(FREQ_A);
+        Oscillator osc = new SquareOscillator().setFreq(FREQ_A);
 //        Oscillator osc2 = new SineOscillator(FREQ_A, SAMPLE_RATE);
 //        Modulator mod = new AddModule();
 
