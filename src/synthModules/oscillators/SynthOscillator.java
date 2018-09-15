@@ -1,12 +1,18 @@
 package synthModules.oscillators;
 
+import static main.Config.SAMPLING_RATE;
+
 public class SynthOscillator extends Oscillator implements Generator{
-    public SynthOscillator(float freq, int SAMPLE_RATE) {
-        super(freq, SAMPLE_RATE);
+
+    public SynthOscillator(){
+        super();
+    }
+
+    public SynthOscillator(float freq) {
+        super(freq);
     }
 
     public byte[] nextSample(int samples){
-        float period = (float) SAMPLE_RATE / freq;
         byte[] sampleArray = new byte[samples];
 
         for(int i=0; i<samples; i++) {

@@ -1,14 +1,19 @@
 package synthModules.oscillators;
 
-public class TriangleOscillator extends Oscillator {
-    public TriangleOscillator(float freq, int SAMPLE_RATE) {
-        super(freq, SAMPLE_RATE);
+import static main.Config.SAMPLING_RATE;
+
+public class TriangleOscillator extends Oscillator implements Generator {
+
+    public TriangleOscillator(){
+        super();
+    }
+
+    public TriangleOscillator(float freq) {
+        super(freq);
     }
 
     public byte[] nextSample(int samples){
-        float period = (float) SAMPLE_RATE / freq;
         byte[] sampleArray = new byte[samples];
-
 
         for(int i=0; i<samples; i++) {
             currentSample++;

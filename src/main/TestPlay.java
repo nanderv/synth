@@ -6,21 +6,18 @@ import synthModules.oscillators.Oscillator;
 import synthModules.oscillators.SineOscillator;
 import synthModules.outputs.Speaker;
 
-import static utils.Note.FREQ_A;
+import static main.Config.FREQ_A;
 
 public class TestPlay {
-    //
-    private static final int SAMPLE_RATE = 44 * 1024;
-
-
+    
     public static void main(String[] args) {
 
-        Oscillator osc = new SineOscillator(FREQ_A, SAMPLE_RATE);
-        Oscillator osc2 = new SineOscillator(FREQ_A/24, SAMPLE_RATE);
-        Oscillator osc3 = new SineOscillator(0.05f, SAMPLE_RATE);
+        Oscillator osc = new SineOscillator(FREQ_A);
+        Oscillator osc2 = new SineOscillator(FREQ_A/24);
+        Oscillator osc3 = new SineOscillator(0.05f);
         TestModulator p = new TestModulator();
         TestModulator p2 = new TestModulator();
-        ConsumerModule s = new Speaker(SAMPLE_RATE);
+        ConsumerModule s = new Speaker();
         osc.connect(p);
         osc2.connect(p);
         p.connect(p2);

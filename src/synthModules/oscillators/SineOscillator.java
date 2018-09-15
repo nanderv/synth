@@ -1,14 +1,19 @@
 package synthModules.oscillators;
 
+import static main.Config.SAMPLING_RATE;
+
 public class SineOscillator extends Oscillator{
-    public SineOscillator(float freq, final int SAMPLE_RATE) {
-        super(freq, SAMPLE_RATE);
+
+    public SineOscillator() {
+        super();
+    }
+
+    public SineOscillator(float freq) {
+        super(freq);
     }
 
     public byte[] nextSample(int samples){
-        float period = (float) SAMPLE_RATE / freq;
         byte[] sampleArray = new byte[samples];
-
 
         for(int i=0; i<samples; i++) {
             currentSample++;

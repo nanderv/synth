@@ -1,15 +1,20 @@
 package synthModules.oscillators;
 
+import static main.Config.SAMPLING_RATE;
+
 public class SquareOscillator extends Oscillator implements Generator{
-    public SquareOscillator(float freq, int SAMPLE_RATE) {
-        super(freq, SAMPLE_RATE);
+
+    public SquareOscillator() {
+        super();
+    }
+
+    public SquareOscillator(float freq) {
+        super(freq);
     }
 
     @Override
     public byte[] nextSample(int samples) {
-        float period = (float) SAMPLE_RATE / freq;
         byte[] sampleArray = new byte[samples];
-
 
         for(int i=0; i<samples; i++) {
             currentSample++;
@@ -21,6 +26,6 @@ public class SquareOscillator extends Oscillator implements Generator{
 
     @Override
     public float generate(float phase) {
-        return Math.sin(phase) > 0.5d ? 1.0f : 0f;
+        return Math.sin(phase) > 0.0d ? 1.0f : -1.0f;
     }
 }
