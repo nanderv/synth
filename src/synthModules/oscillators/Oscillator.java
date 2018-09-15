@@ -5,7 +5,7 @@ import synthModules.ProducerModule;
 import java.io.IOException;
 
 public abstract class Oscillator extends ProducerModule {
-    static float freq;
+    float freq;
     int currentSample = 0;
     final int SAMPLE_RATE;
 

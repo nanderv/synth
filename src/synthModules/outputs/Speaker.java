@@ -6,6 +6,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.SourceDataLine;
 import java.io.InputStream;
+import java.io.PipedInputStream;
 
 
 public class Speaker implements ConsumerModule {
@@ -19,7 +20,7 @@ public class Speaker implements ConsumerModule {
     }
 
     @Override
-    public void setByteStream(InputStream stream) {
+    public void setByteStream(PipedInputStream stream) {
         this.stream = stream;
     }
 
