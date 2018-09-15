@@ -1,30 +1,19 @@
+package utils;
+
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class MidiConverter {
 
-    private static final int a = 440;// a is 440 hz
     private float[] freq = new float[128];
     private Note.Name[] names = new Note.Name[12];
 
     public MidiConverter(){
-        for (int x = 0; x < 127; ++x)
-        {
-            freq[x] = (a / 32) * (2 ^ ((x - 9) / 12));
+        for (int midi = 0; midi < 127; midi++){
+            freq[midi]  = toFreq(midi);
         }
-        
-        names[0] = Note.Name.C;
-        names[1] = Note.Name.Db;
-        names[2] = Note.Name.D;
-        names[3] = Note.Name.Eb;
-        names[4] = Note.Name.E;
-        names[5] = Note.Name.F;
-        names[6] = Note.Name.Gb;
-        names[7] = Note.Name.G;
-        names[8] = Note.Name.Ab;
-        names[9] = Note.Name.A;
-        names[10]= Note.Name.Bb;
-        names[11]= Note.Name.B;
-
+        for (int midi = 0; midi < 12; midi++) {
+            names[midi] = toNoteName(midi);
+        }
     }
 
     public float toCachedFreq(int midi){
@@ -40,7 +29,7 @@ public class MidiConverter {
     }
 
     public static float toFreq(int midi){
-        return (a / 32) * (2 ^ ((midi - 9) / 12));
+        return new Float((Note.FREQ_A / 32.0) * Math.pow(2.0, (midi - 9) / 12.0));
     }
 
     public static Note.Name toNoteName(int midi){
@@ -58,6 +47,13 @@ public class MidiConverter {
             case 10: return Note.Name.Bb;
             case 11: return Note.Name.B ;
             default: throw new NotImplementedException();
+        }
+    }
+
+    public static void main(String[] args){
+        MidiConverter c = new MidiConverter();
+        for(int i=0;i<128;i++) {
+            System.out.println(i+" => "+c.toFreq(i));
         }
     }
 }

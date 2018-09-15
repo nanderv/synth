@@ -1,19 +1,18 @@
 package SynthModules.Outputs;
 
 import SynthModules.ConsumerModule;
-import SynthModules.Oscillators.Oscillator;
-import SynthModules.Oscillators.TriangleOscillator;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import java.io.InputStream;
 
-import static main.TestPlay.SAMPLE_RATE;
 
 public class Speaker implements ConsumerModule {
     InputStream stream;
+    private final int SAMPLE_RATE;
+    public Speaker(final int SAMPLE_RATE){ this.SAMPLE_RATE = SAMPLE_RATE;}
+
     @Override
     public void disconnect() {
         stream = null;

@@ -1,4 +1,8 @@
+package utils;
+
 public class Note {
+
+    public static final float FREQ_A = 440;
 
     public enum Name {
         C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B

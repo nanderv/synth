@@ -12,29 +12,17 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import java.util.function.Consumer;
 
+import static utils.Note.FREQ_A;
+
 public class TestPlay {
     //
-    public static final int SAMPLE_RATE = 44 * 1024;
+    private static final int SAMPLE_RATE = 44 * 1024;
 
 
-    public static byte[] createSinWaveBuffer(double freq, int ms) {
-        int samples = (int)((ms * SAMPLE_RATE) / 1000);
-        byte[] output = new byte[samples];
-        //
-        double period = (double)SAMPLE_RATE / freq;
-        for (int i = 0; i < output.length; i++) {
-            double angle = 2.0 * Math.PI * i / period;
-            output[i] = (byte)(Math.sin(angle) * 127f);  }
+    public static void main(String[] args) {
 
-        return output;
-    }
-
-
-
-    public static void main(String[] args) throws LineUnavailableException, InterruptedException {
-
-         Oscillator osc = new TriangleOscillator(440);
-         ConsumerModule s = new Speaker();
+         Oscillator osc = new TriangleOscillator(FREQ_A, SAMPLE_RATE);
+         ConsumerModule s = new Speaker(SAMPLE_RATE);
          osc.connect(s);
          new Thread(osc).start();
          new Thread(s).start();

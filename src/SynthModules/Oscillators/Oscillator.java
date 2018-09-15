@@ -5,14 +5,14 @@ import SynthModules.ProducerModule;
 import java.io.IOException;
 
 public abstract class Oscillator extends ProducerModule {
-    static float freq = 440;
+    static float freq;
     int currentSample = 0;
-
+    final int SAMPLE_RATE;
 
     public abstract byte[] nextSample(int samples);
 
-    public Oscillator(float freq){
-        this.freq = freq;
+    public Oscillator(float freq, final int SAMPLE_RATE){
+        this.freq = freq; this.SAMPLE_RATE = SAMPLE_RATE;
     }
 
     public void setFreq(float freq){
