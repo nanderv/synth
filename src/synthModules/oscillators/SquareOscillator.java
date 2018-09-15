@@ -19,7 +19,7 @@ public class SquareOscillator extends Oscillator {
 
         for(int i=0; i<samples; i++) {
             currentSample++;
-            float phase = 2.28f * currentSample / period;
+            float phase = 6.28f * currentSample / period;
             float value = Math.sin(phase) > 0.0d ? 1f : -1f;
             sampleArray[i] = (byte) (value * 127f);
         }

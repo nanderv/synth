@@ -18,8 +18,8 @@ public class TriangleOscillator extends Oscillator {
 
         for(int i=0; i<samples; i++) {
             currentSample++;
-            float phase = 2.28f * currentSample / period;
-            float value = Math.abs(4 * ((phase/6.28f - 0.25f)%1f) - 2f) - 1f;
+            float phase = currentSample / period;
+            float value = Math.abs(4 * ((phase - 0.25f)%1f) - 2f) - 1f;
             sampleArray[i] = (byte) (value * 127f);
         }
         return sampleArray;

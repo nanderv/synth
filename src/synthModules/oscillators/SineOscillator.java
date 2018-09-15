@@ -18,7 +18,7 @@ public class SineOscillator extends Oscillator{
 
         for(int i=0; i<samples; i++) {
             currentSample++;
-            float phase = 2.28f * currentSample / period;
+            float phase = 6.28f * currentSample / period;
             float value = (float) Math.sin(phase);
             sampleArray[i] = ((byte) (value * 127f));
         }
