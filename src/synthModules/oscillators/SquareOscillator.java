@@ -1,8 +1,9 @@
 package synthModules.oscillators;
 
-import static main.Config.SAMPLING_RATE;
+import synthModules.ConsumerModule;
+import synthModules.outputs.Speaker;
 
-public class SquareOscillator extends Oscillator implements Generator{
+public class SquareOscillator extends Oscillator {
 
     public SquareOscillator() {
         super();
@@ -19,13 +20,17 @@ public class SquareOscillator extends Oscillator implements Generator{
         for(int i=0; i<samples; i++) {
             currentSample++;
             float phase = 2.28f * currentSample / period;
-            sampleArray[i] = (byte) (generate(phase) * 127f);
+            float value = Math.sin(phase) > 0.0d ? 1f : -1f;
+            sampleArray[i] = (byte) (value * 127f);
         }
         return sampleArray;
     }
 
-    @Override
-    public float generate(float phase) {
-        return Math.sin(phase) > 0.0d ? 1.0f : -1.0f;
+    public static void main(String[] args) {
+        Oscillator osc = new SquareOscillator();
+        ConsumerModule s = new Speaker();
+        osc.connect(s);
+        new Thread(osc).start();
+        new Thread(s).start();
     }
 }

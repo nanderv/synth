@@ -1,6 +1,7 @@
 package synthModules.oscillators;
 
-import static main.Config.SAMPLING_RATE;
+import synthModules.ConsumerModule;
+import synthModules.outputs.Speaker;
 
 public class SineOscillator extends Oscillator{
 
@@ -18,8 +19,17 @@ public class SineOscillator extends Oscillator{
         for(int i=0; i<samples; i++) {
             currentSample++;
             float phase = 2.28f * currentSample / period;
-            sampleArray[i] = ((byte) (Math.sin(phase) * 127f));
+            float value = (float) Math.sin(phase);
+            sampleArray[i] = ((byte) (value * 127f));
         }
         return sampleArray;
+    }
+
+    public static void main(String[] args) {
+        Oscillator osc = new SineOscillator();
+        ConsumerModule s = new Speaker();
+        osc.connect(s);
+        new Thread(osc).start();
+        new Thread(s).start();
     }
 }

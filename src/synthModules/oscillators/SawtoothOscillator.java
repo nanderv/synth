@@ -3,10 +3,7 @@ package synthModules.oscillators;
 import synthModules.ConsumerModule;
 import synthModules.outputs.Speaker;
 
-import static main.Config.FREQ_A;
-import static main.Config.SAMPLING_RATE;
-
-public class SawtoothOscillator extends Oscillator implements Generator {
+public class SawtoothOscillator extends Oscillator  {
 
     public SawtoothOscillator() {
         super();
@@ -22,14 +19,18 @@ public class SawtoothOscillator extends Oscillator implements Generator {
 
         for (int i = 0; i < samples; i++) {
             currentSample++;
-            float phase = 2.28f * currentSample / period;
-            sampleArray[i] = (byte) (generate(phase) * 127f);
+            float phase = currentSample / period; //NOTE: no tau used here
+            float value = -1 + 2 * phase;
+            sampleArray[i] = (byte) (value * 127f);
         }
         return sampleArray;
     }
 
-    @Override
-    public float generate(float phase) {
-        return (float) (2 * (phase / 2.28f - (Math.floor(phase / 2.28f + 0.5))));
+    public static void main(String[] args) {
+        Oscillator osc = new SawtoothOscillator();
+        ConsumerModule s = new Speaker();
+        osc.connect(s);
+        new Thread(osc).start();
+        new Thread(s).start();
     }
 }
