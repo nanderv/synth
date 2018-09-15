@@ -2,7 +2,6 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class MidiConverter {
 
-    private static final int a = 440;// a is 440 hz
     private float[] freq = new float[128];
     private Note.Name[] names = new Note.Name[12];
 
@@ -28,7 +27,7 @@ public class MidiConverter {
     }
 
     public static float toFreq(int midi){
-        return new Float((a / 32.0) * Math.pow(2.0, (midi - 9) / 12.0));
+        return new Float((Note.FREQ_A / 32.0) * Math.pow(2.0, (midi - 9) / 12.0));
     }
 
     public static Note.Name toNoteName(int midi){
