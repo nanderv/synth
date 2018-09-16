@@ -6,6 +6,7 @@ import synthModules.ConsumerModule;
 import synthModules.modulators.TestModulator;
 import synthModules.oscillators.Oscillator;
 import synthModules.oscillators.SineOscillator;
+import synthModules.oscillators.SquareOscillator;
 import synthModules.outputs.FloatControlOutput;
 import synthModules.outputs.Speaker;
 
@@ -16,7 +17,7 @@ public class TestPlay {
     public static void main(String[] args) {
 
         Oscillator osc = new SineOscillator(FREQ_A);
-        Oscillator osc2 = new SineOscillator(FREQ_A);
+        Oscillator osc2 = new SquareOscillator(1);
 
         Speaker s = new Speaker();
         OscillatorFrequencyControlAdapter f = new OscillatorFrequencyControlAdapter(osc);

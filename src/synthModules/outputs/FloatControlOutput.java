@@ -20,14 +20,15 @@ public class FloatControlOutput extends ConsumerModule implements Runnable {
 
     @Override
     public void run() {
-        long c = ((long)1000000000)/(SAMPLING_RATE );
+        long c = 16*((long)1000000000)/(SAMPLING_RATE );
 
         long t = System.nanoTime();
         long samples = 0;
         while(true) {
             if (System.nanoTime() > t + c * samples) {
                 samples++;
-                float val = getSample(1)[0];
+
+                float val = (((float) getSample(1)[0] + 128))/256;
                 adapter.setValue(adapter.lowerBound + (adapter.upperBound - adapter.lowerBound) * val);
             }
         }

@@ -6,7 +6,7 @@ public class OscillatorFrequencyControlAdapter extends FloatControlAdapter {
     private Oscillator oscillator;
     public OscillatorFrequencyControlAdapter(Oscillator o)
     {
-        super(40,6000);
+        super(440,6000);
         oscillator = o;
     }
     @Override

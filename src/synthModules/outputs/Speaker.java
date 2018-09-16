@@ -24,11 +24,11 @@ public class Speaker extends ConsumerModule implements Runnable {
             line.open(af, SAMPLING_RATE);
             line.start();
             long t = System.nanoTime();
-            long c = 8*((long)1000000000)/(SAMPLING_RATE );
+            long c = 16*((long)1000000000)/(SAMPLING_RATE );
             do {
-                    if(System.nanoTime() > t + c*samples-2000000) {
+                    if(System.nanoTime() > t + c*samples-20000000) {
                         samples = samples + 1;
-                        line.write(this.getSample(8), 0, 8);
+                        line.write(this.getSample(16), 0, 16);
                     } else {
 //                        System.out.println(c*samples + ": "+ (System.nanoTime() - t));
                     }
