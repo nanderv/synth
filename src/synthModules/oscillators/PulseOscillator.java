@@ -5,18 +5,18 @@ import synthModules.outputs.Speaker;
 
 public class PulseOscillator extends Oscillator {
 
-    private float width;
+    private float dutyCycle;
 
     public PulseOscillator() {
         super();
-        this.width = 0.5f;
+        this.dutyCycle = 0.5f;
     }
 
     /**
-     * Set pulse width between 0 and 1
+     * Set duty cycle between 0 and 1
      */
-    public PulseOscillator setPulseWidth(float width){
-        this.width = width;
+    public PulseOscillator setDutyCycle(float dutyCycle){
+        this.dutyCycle = dutyCycle;
         return this;
     }
 
@@ -27,7 +27,7 @@ public class PulseOscillator extends Oscillator {
         for(int i=0; i<samples; i++) {
             currentSample++;
             float phase = currentSample%period / period;
-            float value = phase > width ? 1f : 0;
+            float value = phase > dutyCycle ? 1f : 0f;
             sampleArray[i] = (byte) (value * amplitude);
         }
         return sampleArray;

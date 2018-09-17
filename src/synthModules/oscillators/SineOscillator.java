@@ -1,10 +1,7 @@
 package synthModules.oscillators;
 
-import main.Config;
 import synthModules.ConsumerModule;
 import synthModules.outputs.Speaker;
-
-import static main.Config.FREQ_A;
 
 public class SineOscillator extends Oscillator{
 
