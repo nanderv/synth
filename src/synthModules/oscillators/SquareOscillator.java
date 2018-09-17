@@ -5,8 +5,19 @@ import synthModules.outputs.Speaker;
 
 public class SquareOscillator extends Oscillator {
 
+    private float width;
+
     public SquareOscillator() {
         super();
+        this.width = 0.5f;
+    }
+
+    /**
+     * Set pulse width between 0 and 1
+     */
+    public SquareOscillator setPulseWidth(float width){
+        this.width = width;
+        return this;
     }
 
     @Override
@@ -15,8 +26,8 @@ public class SquareOscillator extends Oscillator {
 
         for(int i=0; i<samples; i++) {
             currentSample++;
-            float phase = 6.28f * currentSample / period;
-            float value = Math.sin(phase) > 0.0d ? 1f : -1f;
+            float phase = currentSample%period / period;
+            float value = phase > width ? 1f : -1f;
             sampleArray[i] = (byte) (value * amplitude);
         }
         return sampleArray;
