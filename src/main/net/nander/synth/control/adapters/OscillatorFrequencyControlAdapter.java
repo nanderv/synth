@@ -1,4 +1,4 @@
-package net.nander.synth.controlAdapters;
+package net.nander.synth.control.adapters;
 
 import net.nander.synth.synthModules.oscillators.Oscillator;
 

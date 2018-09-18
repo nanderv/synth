@@ -1,4 +1,5 @@
-import net.nander.synth.synthModules.oscillators.*;
+package net.nander.synth.synthModules.oscillators;
+
 import org.junit.jupiter.api.Test;
 
 import javax.imageio.ImageIO;

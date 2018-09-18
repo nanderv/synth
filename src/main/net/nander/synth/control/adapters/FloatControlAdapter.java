@@ -1,4 +1,4 @@
-package net.nander.synth.controlAdapters;
+package net.nander.synth.control.adapters;
 
 public abstract class FloatControlAdapter {
     public final float lowerBound;
