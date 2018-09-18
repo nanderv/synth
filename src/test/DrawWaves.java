@@ -1,7 +1,4 @@
-package test;
-
-import main.Config;
-import synthModules.oscillators.*;
+import net.nander.synth.synthModules.oscillators.*;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -10,7 +7,7 @@ import java.io.IOException;
 
 public class DrawWaves {
     static final String FILETYPE = "png";
-    static final String OUTPUT_FOLDER = "./";
+    static final String OUTPUT_FOLDER = "./out/";
 
     public static void draw(Oscillator o) throws IOException {
         final int BLACK = 0;
@@ -21,7 +18,7 @@ public class DrawWaves {
         BufferedImage image = new BufferedImage(512,255, BufferedImage.TYPE_INT_RGB);
 
         //set frequency to one period per 512 samples
-        o.setFreq(Config.SAMPLING_RATE/512);
+        //o.setFreq(main.net.nander.synth.Config.SAMPLING_RATE/512);
 
         for(int x=0;x<512;x++){
             byte sample = o.nextSample(1)[0];
