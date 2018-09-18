@@ -1,7 +1,5 @@
 package synthModules;
 
-import synthModules.modulators.Modulator;
-
 public class ModuleOutput {
     ModuleInput moduleInput;
     public void setModuleInput(ModuleInput input){
@@ -10,6 +8,6 @@ public class ModuleOutput {
 
     public void write(byte[] data){
         if(moduleInput != null)
-            moduleInput.write(data);
+            moduleInput.writeAndFlip(data);
     }
 }

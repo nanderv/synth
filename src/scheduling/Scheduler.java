@@ -1,7 +1,8 @@
 package scheduling;
 
+import main.OsTools;
+
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Scheduler {
@@ -24,6 +25,8 @@ public class Scheduler {
         taskList.add(new TaskScheduling(t, taskList.size()));
     }
 
+    public static void addTaskDirectly(Task t) { Scheduler.getInstance().addTask(t);}
+;
     public TaskScheduling getTask(int oldID){
         synchronized (instance){
             if(oldID != -1){
@@ -43,5 +46,14 @@ public class Scheduler {
             else
                 return null;
         }
+    }
+
+    public static void configFreeRun(){
+        int cores = OsTools.getNumberOfCPUCores();
+        System.out.println(cores);
+        for(int i=0;i<Math.max(cores-1, 1); i++){
+            new Worker().start();
+        }
+
     }
 }
