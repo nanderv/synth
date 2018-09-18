@@ -1,5 +1,7 @@
 package synthModules.oscillators;
 
+import scheduling.Scheduler;
+import scheduling.Worker;
 import synthModules.ConsumerModule;
 import synthModules.outputs.Speaker;
 
@@ -25,7 +27,10 @@ public class TriangleOscillator extends Oscillator {
         Oscillator osc = new TriangleOscillator();
         ConsumerModule s = new Speaker();
         osc.connect(s);
-        new Thread(osc).start();
-        new Thread(s).start();
+        Scheduler.getInstance().addTask(osc);
+        Scheduler.getInstance().addTask(s);
+        Worker w = new Worker();
+        Worker w2 = new Worker();
+        w.start();
     }
 }
