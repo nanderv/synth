@@ -1,10 +1,12 @@
 package synthModules.oscillators;
 
+import synthModules.ModuleOutput;
 import synthModules.ProducerModule;
 
 import java.io.IOException;
 
 import static main.Config.FREQ_A;
+import static main.Config.SAMPLES_PER_TICK;
 import static main.Config.SAMPLING_RATE;
 
 public abstract class Oscillator extends ProducerModule {
@@ -12,6 +14,7 @@ public abstract class Oscillator extends ProducerModule {
     int currentSample;
     float period;
     float amplitude;
+
 
     public abstract byte[] nextSample(int samples);
 
@@ -37,26 +40,8 @@ public abstract class Oscillator extends ProducerModule {
 
     @Override
     public void run() {
-        byte[] bytes;
-        while(true){
-
-
-            if(stream != null) {
-                try {
-                    //System.out.println(otherStream.available());
-
-                    int produce = 16;
-                    bytes = nextSample(produce);
-
-                    stream.write(bytes,0,produce);
-//                    System.out.println("here");
-                } catch (IOException e) {
-                    e.printStackTrace();
-
-                }
-            }
+            moduleOutput.write(nextSample(SAMPLES_PER_TICK));
         }
 
-    }
 }
 

@@ -1,29 +1,20 @@
 package synthModules;
 
-import java.io.*;
+import scheduling.Task;
 
-public abstract class ProducerModule implements Runnable {
-    ConsumerModule connectedTo;
-    protected PipedOutputStream stream;
-    protected PipedInputStream otherStream;
+
+public abstract class ProducerModule implements Task {
+    public ModuleOutput moduleOutput;
 
     public ProducerModule(){
+        moduleOutput = new ModuleOutput();
     }
 
     public void connect(ConsumerModule module){
-        try {
-            stream = new PipedOutputStream();
-            otherStream = new PipedInputStream(stream, 8);
-            module.setByteStream(otherStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        connectedTo = module;
+        moduleOutput.setModuleInput(module.getModuleInput());
     }
 
     public void disconnect(){
-        connectedTo.disconnect();
-        connectedTo = null;
-
+        moduleOutput.setModuleInput(null);
     }
 }

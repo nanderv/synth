@@ -1,52 +1,42 @@
 package synthModules.outputs;
 
 import synthModules.ConsumerModule;
+import synthModules.ModuleInput;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
-import java.io.InputStream;
-import java.io.PipedInputStream;
 
+import static main.Config.SAMPLES_PER_TICK;
 import static main.Config.SAMPLING_RATE;
 
 
 public class Speaker implements ConsumerModule {
-    InputStream stream;
+    public ModuleInput input;
 
-    @Override
-    public void disconnect() {
-        stream = null;
-    }
+    private SourceDataLine line;
 
-    @Override
-    public void setByteStream(PipedInputStream stream) {
-        this.stream = stream;
-    }
-
-    @Override
-    public void run() {
-        SourceDataLine line = null;
-
+    public Speaker()  {
+        input = new ModuleInput();
+        final AudioFormat af = new AudioFormat(SAMPLING_RATE, 8, 1, true, true);
         try {
-            final AudioFormat af = new AudioFormat(SAMPLING_RATE, 8, 1, true, true);
             line = AudioSystem.getSourceDataLine(af);
+            line.open(af, SAMPLING_RATE);
 
-        line.open(af, SAMPLING_RATE);
-        line.start();
-        while(true){
-            byte[] bytes = new byte[8];
-            if(stream != null) {
-                stream.read(bytes);
-                line.write(bytes,0,8);
-
-            }
-        }
-
-        } catch (Exception e) {
+        } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
-        line.drain();
-        line.close();
+        line.start();
+    }
+    @Override
+    public void run() {
+            byte[] data = input.readAndFlip();
+            line.write(data,0,SAMPLES_PER_TICK);
+    }
+
+    @Override
+    public ModuleInput getModuleInput() {
+        return input;
     }
 }

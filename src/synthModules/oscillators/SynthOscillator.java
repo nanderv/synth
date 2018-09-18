@@ -1,5 +1,6 @@
 package synthModules.oscillators;
 
+import scheduling.Scheduler;
 import synthModules.ConsumerModule;
 import synthModules.outputs.Speaker;
 
@@ -25,7 +26,8 @@ public class SynthOscillator extends Oscillator {
         Oscillator osc = new SynthOscillator();
         ConsumerModule s = new Speaker();
         osc.connect(s);
-        new Thread(osc).start();
-        new Thread(s).start();
+        Scheduler.addTaskDirectly(osc);
+        Scheduler.addTaskDirectly(s);
+        Scheduler.configFreeRun();
     }
 }
