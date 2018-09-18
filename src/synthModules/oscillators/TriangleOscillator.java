@@ -15,7 +15,7 @@ public class TriangleOscillator extends Oscillator {
         for(int i=0; i<samples; i++) {
             currentSample++;
             float phase = currentSample / period;
-            float value = Math.abs(4 * ((phase - 0.25f)%1f) - 2f) - 1f;
+            float value = 1f - Math.abs(4 * ((phase + 0.25f)%1f) - 2f);
             sampleArray[i] = (byte) (value * amplitude);
         }
         return sampleArray;

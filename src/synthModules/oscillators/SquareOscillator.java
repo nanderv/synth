@@ -27,7 +27,7 @@ public class SquareOscillator extends Oscillator {
         for(int i=0; i<samples; i++) {
             currentSample++;
             float phase = currentSample%period / period;
-            float value = phase > dutyCycle ? 1f : -1f;
+            float value = phase > dutyCycle ? -1f : 1f;
             sampleArray[i] = (byte) (value * amplitude);
         }
         return sampleArray;

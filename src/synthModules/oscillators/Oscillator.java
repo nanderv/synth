@@ -28,7 +28,7 @@ public abstract class Oscillator extends ProducerModule {
     }
 
     /**
-     * @param amplitude in (0f,127f)
+     * @requires amplitude >= 0f && amplitude <= 127f
      */
     public Oscillator setAmplitude(float amplitude){
         this.amplitude = amplitude;
