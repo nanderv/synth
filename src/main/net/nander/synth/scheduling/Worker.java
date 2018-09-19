@@ -13,6 +13,11 @@ public class Worker extends Thread {
                 lastTask = taskScheduling.slot;
             } else{
                 lastTask = -1;
+                try {
+                    Thread.sleep(0,100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

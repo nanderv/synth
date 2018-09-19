@@ -39,6 +39,4 @@ public abstract class Oscillator extends ProducerModule {
     public void run() {
             moduleOutput.write(nextSample(SAMPLES_PER_TICK));
         }
-
 }
-

@@ -23,7 +23,19 @@ public class Scheduler {
     }
 
     public void addTask(Task t){
-        taskList.add(new TaskScheduling(t, taskList.size()));
+
+        if(Config.TASKS_PER_SCHEDULING <= 1 ) {
+            taskList.add(new TaskScheduling(t, taskList.size()));
+        } else {
+            MultiTask tt = null;
+            if (taskList.size() > 0 && ((MultiTask) taskList.get(taskList.size() - 1).task).size() < Config.TASKS_PER_SCHEDULING) {
+                tt = (MultiTask) taskList.get(taskList.size() - 1).task;
+            } else {
+                tt = new MultiTask();
+                taskList.add(new TaskScheduling(tt, taskList.size()));
+            }
+            tt.addTask(t);
+        }
     }
 
     public static void addTaskDirectly(Task t) { Scheduler.getInstance().addTask(t);}
