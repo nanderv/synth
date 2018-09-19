@@ -1,4 +1,4 @@
-package net.nander.synth.control;
+package net.nander.synth.control.interfaces;
 
 import java.io.BufferedReader;
 import java.io.IOException;

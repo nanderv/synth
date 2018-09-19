@@ -1,4 +1,6 @@
-import net.nander.synth.synthModules.oscillators.*;
+package net.nander.synth.synthModules.oscillators;
+
+import org.junit.jupiter.api.Test;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -9,7 +11,7 @@ public class DrawWaves {
     static final String FILETYPE = "png";
     static final String OUTPUT_FOLDER = "./out/";
 
-    public static void draw(Oscillator o) throws IOException {
+    public static void draw(Oscillator o, String filename) throws IOException {
         final int BLACK = 0;
         final int WHITE = Integer.MAX_VALUE;
         final int RED = 16711680;
@@ -34,26 +36,25 @@ public class DrawWaves {
             }
         }
 
-        String filename = OUTPUT_FOLDER + o.getClass().getSimpleName()+"."+FILETYPE;
-        File outputfile = new File(filename);
-        System.out.println("Exporting "+filename);
+        String path = OUTPUT_FOLDER + filename +"."+FILETYPE;
+        File outputfile = new File(path);
+        System.out.println("Exporting "+path);
         ImageIO.write(image, FILETYPE, outputfile);
     }
 
-    public static void createImages(){
+    @Test
+    public void createImages(){
         try {
-            draw(new PulseOscillator());
-            draw(new SawtoothOscillator());
-            draw(new SineOscillator());
-            draw(new SquareOscillator());
-            draw(new SynthOscillator());
-            draw(new TriangleOscillator());
+            draw(new PulseOscillator(),     "pulse");
+            draw(new SawtoothOscillator(),  "sawtooth");
+            draw(new SawtoothOscillator()
+                    .setInverted(true),     "sawtooth inverted");
+            draw(new SineOscillator(),      "sine");
+            draw(new SquareOscillator(),    "square");
+            draw(new SynthOscillator(),     "synth");
+            draw(new TriangleOscillator(),  "triangle");
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    public static void main(String[] args){
-        DrawWaves d = new DrawWaves();
-        d.createImages();
     }
 }

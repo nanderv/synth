@@ -1,6 +1,6 @@
-package net.nander.synth.control;
+package net.nander.synth.control.interfaces;
 
-import net.nander.synth.controlAdapters.FloatControlAdapter;
+import net.nander.synth.control.adapters.FloatControlAdapter;
 import net.nander.synth.utils.MidiConverter;
 
 import java.io.BufferedReader;
