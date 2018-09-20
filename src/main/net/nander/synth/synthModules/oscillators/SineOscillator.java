@@ -10,16 +10,9 @@ public class SineOscillator extends Oscillator{
         super();
     }
 
-    public byte[] nextSample(int samples){
-        byte[] sampleArray = new byte[samples];
-
-        for(int i=0; i<samples; i++) {
-            currentSample++;
-            float phase = 6.28f * currentSample / period;
-            float value = (float) Math.sin(phase);
-            sampleArray[i] = ((byte) (value * amplitude));
-        }
-        return sampleArray;
+    @Override
+    public float generateValue(float phase) {
+        return (float) Math.sin(6.28f * phase);
     }
 
     public static void main(String[] args) {

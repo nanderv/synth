@@ -12,8 +12,23 @@ public abstract class Oscillator extends ProducerModule {
     float period;
     float amplitude;
 
+    /**
+     * @requires phase >=0 && phase < 1
+     * @param phase Phase of wave
+     */
+    public abstract float generateValue(float phase);
 
-    public abstract byte[] nextSample(int samples);
+    public byte[] nextSample(int samples) {
+        byte[] sampleArray = new byte[samples];
+
+        for(int i=0; i<samples; i++) {
+            currentSample++;
+            float phase = currentSample / period ;
+            float value = generateValue(phase);
+            sampleArray[i] = (byte) (value * amplitude);
+        }
+        return sampleArray;
+    }
 
     public Oscillator(){
         setFreq(Config.FREQ_A);

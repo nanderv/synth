@@ -3,6 +3,7 @@ package net.nander.synth.synthModules.oscillators;
 import net.nander.synth.scheduling.Scheduler;
 import net.nander.synth.synthModules.ConsumerModule;
 import net.nander.synth.synthModules.outputs.Speaker;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class SynthOscillator extends Oscillator {
 
@@ -20,6 +21,11 @@ public class SynthOscillator extends Oscillator {
             sampleArray[i] = (byte) (value * amplitude);
         }
         return sampleArray;
+    }
+
+    @Override
+    public float generateValue(float phase) {
+        throw new NotImplementedException(); //There is no single value, as there are multiple frequencies
     }
 
     public static void main(String[] args) {

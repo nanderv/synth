@@ -4,7 +4,7 @@ import net.nander.synth.scheduling.Scheduler;
 import net.nander.synth.synthModules.ConsumerModule;
 import net.nander.synth.synthModules.outputs.Speaker;
 
-public class PulseOscillator extends Oscillator {
+public class PulseOscillator extends Oscillator{
 
     private float dutyCycle;
 
@@ -22,16 +22,8 @@ public class PulseOscillator extends Oscillator {
     }
 
     @Override
-    public byte[] nextSample(int samples) {
-        byte[] sampleArray = new byte[samples];
-
-        for(int i=0; i<samples; i++) {
-            currentSample++;
-            float phase = currentSample%period / period;
-            float value = phase <= dutyCycle ? 1f : 0f;
-            sampleArray[i] = (byte) (value * amplitude);
-        }
-        return sampleArray;
+    public float generateValue(float phase) {
+        return (phase % 1f) <= dutyCycle ? 1f : 0f;
     }
 
     public static void main(String[] args) {
@@ -41,6 +33,5 @@ public class PulseOscillator extends Oscillator {
         Scheduler.addTaskDirectly(osc);
         Scheduler.addTaskDirectly(s);
         Scheduler.configFreeRun();
-
     }
 }
