@@ -1,5 +1,6 @@
 package net.nander.synth.synthModules.oscillators;
 
+import net.nander.synth.utils.Chord;
 import org.junit.jupiter.api.Test;
 
 import javax.imageio.ImageIO;
@@ -20,7 +21,7 @@ public class DrawWaves {
         BufferedImage image = new BufferedImage(512,255, BufferedImage.TYPE_INT_RGB);
 
         //set frequency to one period per 512 samples
-        //o.setFreq(main.net.nander.synth.Config.SAMPLING_RATE/512);
+        //o.setFreq(Config.SAMPLING_RATE/512);
 
         for(int x=0;x<512;x++){
             byte sample = o.nextSample(1)[0];
@@ -51,6 +52,10 @@ public class DrawWaves {
                     .setInverted(true),     "sawtooth inverted");
             draw(new SineOscillator(),      "sine");
             draw(new SquareOscillator(),    "square");
+            draw(new ChordOscillator()
+                    .setChord(Chord.MAJOR), "chord maj");
+            draw(new ChordOscillator()
+                    .setChord(Chord.MINOR), "chord min");
             draw(new SynthOscillator(),     "synth");
             draw(new TriangleOscillator(),  "triangle");
         } catch (IOException e) {

@@ -6,4 +6,5 @@ public class Config {
     public static final int FREQ_A = 440;
     public static final int SAMPLES_PER_TICK = 2;
     public static final int CORES = 0;
+    public static final float SEMITONE_FREQ_FACTOR =  1.059463f;
 }
