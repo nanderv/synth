@@ -25,7 +25,7 @@ public class SynthOscillator extends Oscillator {
     }
 
     @Override
-    public float generateValue(float phase) {
+    public float generateSignal(float phase) {
         throw new NotImplementedException(); //There is no single value, as there are multiple frequencies
     }
 

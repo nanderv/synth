@@ -14,18 +14,20 @@ public abstract class Oscillator extends ProducerModule {
 
     /**
      * @requires phase >=0 && phase < 1
+     * @ensures result >= 0 && result < 1
      * @param phase Phase of wave
+     * @return signal value that should be multiplied by <code>amplitude</code>
      */
-    public abstract float generateValue(float phase);
+    public abstract float generateSignal(float phase);
 
     public byte[] nextSample(int samples) {
         byte[] sampleArray = new byte[samples];
 
         for(int i=0; i<samples; i++) {
             currentSample++;
-            float phase = currentSample / period ;
-            float value = generateValue(phase);
-            sampleArray[i] = (byte) (value * amplitude);
+            float phase = (currentSample / period ) % 1f;
+            float signal = generateSignal(phase);
+            sampleArray[i] = (byte) (signal * amplitude);
         }
         return sampleArray;
     }

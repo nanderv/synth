@@ -22,8 +22,8 @@ public class SquareOscillator extends Oscillator{
     }
 
     @Override
-    public float generateValue(float phase) {
-        return (phase % 1f) > dutyCycle ? -1f : 1f;
+    public float generateSignal(float phase) {
+        return phase > dutyCycle ? -1f : 1f;
     }
 
     public static void main(String[] args) {

@@ -11,7 +11,7 @@ public class TriangleOscillator extends Oscillator{
     }
 
     @Override
-    public float generateValue(float phase) {
+    public float generateSignal(float phase) {
         return 1f - Math.abs(4 * ((phase + 0.25f)%1f) - 2f);
     }
 

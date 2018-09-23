@@ -19,10 +19,10 @@ public class SawtoothOscillator extends Oscillator{
     }
 
     @Override
-    public float generateValue(float phase) {
+    public float generateSignal(float phase) {
         return inverted
-            ?  1 - 2*(phase % 1f)//  |\|\|\|\
-            : -1 + 2*(phase % 1f)//  |/|/|/|/
+            ?  1 - 2 * phase //  |\|\|\|\
+            : -1 + 2 * phase //  |/|/|/|/
             ;
     }
 

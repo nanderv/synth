@@ -66,12 +66,12 @@ public class ChordOscillator extends Oscillator {
             //First note of chord is always the root.
             //Root has regular amplitude
             byte[] notes = this.chord.notes();
-            float value = this.oscillator.generateValue(phase);
+            float value = this.oscillator.generateSignal(phase);
 
             for(int j=1;j<notes.length;j++){
                 //TODO: keep frequencies separated instead of combining them, making filter implementation trivial
                 //Other notes of chord have half the amplitude of the root
-                value += 0.5f *this.oscillator.generateValue(phase* periods[notes[j]]);
+                value += 0.5f *this.oscillator.generateSignal(phase* periods[notes[j]]);
             }
             sampleArray[i] = ((byte) (value * amplitude));
         }
@@ -79,7 +79,7 @@ public class ChordOscillator extends Oscillator {
     }
 
     @Override
-    public float generateValue(float phase) {
+    public float generateSignal(float phase) {
         throw new NotImplementedException(); //There is no single value, as there are multiple frequencies
     }
 

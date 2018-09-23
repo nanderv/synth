@@ -11,7 +11,7 @@ public class SineOscillator extends Oscillator{
     }
 
     @Override
-    public float generateValue(float phase) {
+    public float generateSignal(float phase) {
         return (float) Math.sin(6.28f * phase);
     }
 
