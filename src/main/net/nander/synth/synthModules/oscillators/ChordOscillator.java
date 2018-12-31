@@ -5,7 +5,7 @@ import net.nander.synth.scheduling.Scheduler;
 import net.nander.synth.synthModules.ConsumerModule;
 import net.nander.synth.synthModules.outputs.Speaker;
 import net.nander.synth.utils.Chord;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 
 public class ChordOscillator extends Oscillator {
 
@@ -80,7 +80,7 @@ public class ChordOscillator extends Oscillator {
 
     @Override
     public float generateSignal(float phase) {
-        throw new NotImplementedException(); //There is no single value, as there are multiple frequencies
+        return 0f;
     }
 
     public static void main(String[] args) {

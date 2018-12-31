@@ -37,7 +37,7 @@ public class Speaker implements ConsumerModule {
     }
 
     @Override
-    public ModuleInput getModuleInput() {
+    public ModuleInput getModuleInput(int addr) {
         return input;
     }
 }

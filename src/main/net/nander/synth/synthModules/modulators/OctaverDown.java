@@ -63,7 +63,7 @@ public class OctaverDown extends Modulator{
     }
 
     @Override
-    public ModuleInput getModuleInput() {
+    public ModuleInput getModuleInput(int addr) {
         return input;
     }
 

@@ -1,5 +1,6 @@
 package net.nander.synth.synthModules.oscillators;
 
+import jdk.jshell.spi.ExecutionControl;
 import net.nander.synth.Config;
 import net.nander.synth.synthModules.ProducerModule;
 
@@ -36,6 +37,8 @@ public abstract class Oscillator extends ProducerModule {
         setFreq(Config.FREQ_A);
         setAmplitude(64f);
     }
+
+
 
     public Oscillator setFreq(float freq){
         this.currentSample =  (int) (currentSample* this.freq / freq);

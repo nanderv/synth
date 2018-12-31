@@ -11,7 +11,10 @@ public abstract class ProducerModule implements Task {
     }
 
     public void connect(ConsumerModule module){
-        moduleOutput.setModuleInput(module.getModuleInput());
+        moduleOutput.setModuleInput(module.getModuleInput(0));
+    }
+    public void connect(ConsumerModule module, int addr){
+        moduleOutput.setModuleInput(module.getModuleInput(addr));
     }
 
     public void disconnect(){

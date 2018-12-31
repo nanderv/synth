@@ -1,9 +1,9 @@
 package net.nander.synth.synthModules.oscillators;
 
+import jdk.jshell.spi.ExecutionControl;
 import net.nander.synth.scheduling.Scheduler;
 import net.nander.synth.synthModules.ConsumerModule;
 import net.nander.synth.synthModules.outputs.Speaker;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class SynthOscillator extends Oscillator {
 
@@ -26,7 +26,7 @@ public class SynthOscillator extends Oscillator {
 
     @Override
     public float generateSignal(float phase) {
-        throw new NotImplementedException(); //There is no single value, as there are multiple frequencies
+        return 0;
     }
 
     public static void main(String[] args) {
