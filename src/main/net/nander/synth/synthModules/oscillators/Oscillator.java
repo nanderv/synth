@@ -1,5 +1,6 @@
 package net.nander.synth.synthModules.oscillators;
 
+
 import net.nander.synth.Config;
 import net.nander.synth.synthModules.ProducerModule;
 
@@ -12,13 +13,32 @@ public abstract class Oscillator extends ProducerModule {
     float period;
     float amplitude;
 
+    /**
+     * @requires phase >=0 && phase < 1
+     * @ensures result >= 0 && result < 1
+     * @param phase Phase of wave
+     * @return signal value that should be multiplied by <code>amplitude</code>
+     */
+    public abstract float generateSignal(float phase);
 
-    public abstract byte[] nextSample(int samples);
+    public byte[] nextSample(int samples) {
+        byte[] sampleArray = new byte[samples];
+
+        for(int i=0; i<samples; i++) {
+            currentSample++;
+            float phase = (currentSample / period ) % 1f;
+            float signal = generateSignal(phase);
+            sampleArray[i] = (byte) (signal * amplitude);
+        }
+        return sampleArray;
+    }
 
     public Oscillator(){
         setFreq(Config.FREQ_A);
         setAmplitude(64f);
     }
+
+
 
     public Oscillator setFreq(float freq){
         this.currentSample =  (int) (currentSample* this.freq / freq);

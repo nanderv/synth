@@ -4,7 +4,7 @@ import net.nander.synth.scheduling.Scheduler;
 import net.nander.synth.synthModules.ConsumerModule;
 import net.nander.synth.synthModules.outputs.Speaker;
 
-public class SquareOscillator extends Oscillator {
+public class SquareOscillator extends Oscillator{
 
     private float dutyCycle;
 
@@ -22,16 +22,8 @@ public class SquareOscillator extends Oscillator {
     }
 
     @Override
-    public byte[] nextSample(int samples) {
-        byte[] sampleArray = new byte[samples];
-
-        for(int i=0; i<samples; i++) {
-            currentSample++;
-            float phase = currentSample%period / period;
-            float value = phase > dutyCycle ? -1f : 1f;
-            sampleArray[i] = (byte) (value * amplitude);
-        }
-        return sampleArray;
+    public float generateSignal(float phase) {
+        return phase > dutyCycle ? -1f : 1f;
     }
 
     public static void main(String[] args) {

@@ -11,6 +11,7 @@ import javax.sound.sampled.SourceDataLine;
 import static net.nander.synth.Config.SAMPLES_PER_TICK;
 import static net.nander.synth.Config.SAMPLING_RATE;
 
+//TODO: make mono and stereo version
 public class Speaker implements ConsumerModule {
     public ModuleInput input;
 
@@ -36,7 +37,7 @@ public class Speaker implements ConsumerModule {
     }
 
     @Override
-    public ModuleInput getModuleInput() {
+    public ModuleInput getModuleInput(int addr) {
         return input;
     }
 }

@@ -25,7 +25,7 @@ public class Octaver extends Modulator{
     }
 
     @Override
-    public ModuleInput getModuleInput() {
+    public ModuleInput getModuleInput(int addr) {
         return input;
     }
 

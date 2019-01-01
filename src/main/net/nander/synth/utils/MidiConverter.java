@@ -1,6 +1,7 @@
 package net.nander.synth.utils;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.util.InputMismatchException;
 
 import static net.nander.synth.Config.FREQ_A;
 
@@ -48,7 +49,7 @@ public class MidiConverter {
             case 9 : return Note.Name.A ;
             case 10: return Note.Name.Bb;
             case 11: return Note.Name.B ;
-            default: throw new NotImplementedException();
+            default: throw new InputMismatchException();
         }
     }
 

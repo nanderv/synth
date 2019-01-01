@@ -16,10 +16,16 @@ public class SynthOscillator extends Oscillator {
         for(int i=0; i<samples; i++) {
             currentSample++;
             float phase = 6.28f * currentSample / period;
+            //TODO: keep frequencies separated instead of combining them, making filter implementation trivial
             float value = (float) (Math.sin(phase) + 0.5f *Math.sin(phase/2f) + 0.3f*Math.sin(phase/4f));
             sampleArray[i] = (byte) (value * amplitude);
         }
         return sampleArray;
+    }
+
+    @Override
+    public float generateSignal(float phase) {
+        return 0;
     }
 
     public static void main(String[] args) {
