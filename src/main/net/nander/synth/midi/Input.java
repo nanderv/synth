@@ -1,6 +1,7 @@
 package net.nander.synth.midi;
 import net.nander.synth.notes.LinkedHashSetNoteState;
 import net.nander.synth.notes.NoteState;
+import net.nander.synth.notes.NoteStateAcceptor;
 import net.nander.synth.notes.SynthBank;
 import net.nander.synth.utils.MidiConverter;
 import net.nander.synth.utils.Note;
@@ -20,8 +21,8 @@ public class Input implements Receiver {
     public String name;
 
     public LinkedHashSet<Note> notes = new LinkedHashSet<>();
-    private SynthBank synthBank;
-    public Input(SynthBank b, String name){
+    private NoteStateAcceptor synthBank;
+    public Input(NoteStateAcceptor b, String name){
         this.synthBank = b;
         this.name = name;
         System.out.println(b);

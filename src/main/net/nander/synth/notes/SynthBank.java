@@ -10,7 +10,7 @@ import net.nander.synth.utils.Note;
 
 import java.util.*;
 
-public class SynthBank{
+public class SynthBank implements NoteStateAcceptor{
 
     private Set<Oscillator> freeOscillators;
     private Map<Note, Oscillator> usedOscillators;
@@ -19,40 +19,40 @@ public class SynthBank{
         this.freeOscillators = freeOscillators;
     }
 
-    public void setNoteState(NoteState n){
-        System.out.println("A");
-        for(Note note: usedOscillators.keySet()){
-            if (! n.getNotesAsSet().contains(note))
-            {
-                System.out.println("A");
-                Oscillator o = usedOscillators.get(note);
-                freeOscillators.add(o);
-                usedOscillators.remove(note);
-                o.setAmplitude(0);
+    public void setNoteState(NoteState n) {
+        synchronized (usedOscillators) {
+            System.out.println("A");
+            for (Note note : usedOscillators.keySet()) {
+                if (!n.getNotesAsSet().contains(note)) {
+                    System.out.println("A");
+                    Oscillator o = usedOscillators.get(note);
+                    freeOscillators.add(o);
+                    usedOscillators.remove(note);
+                    o.setAmplitude(0);
 
+                }
             }
-        }
-        System.out.println(n.getNotesAsSet().size());
+            System.out.println(n.getNotesAsSet().size());
 
-        for (Iterator<Note> it = n.getNotes(); it.hasNext(); ) {
-            Note note = it.next();
-            System.out.println("AAAA");
-            if (usedOscillators.containsKey(note)){
-                System.out.println("Skipping");
+            for (Iterator<Note> it = n.getNotes(); it.hasNext(); ) {
+                Note note = it.next();
+                System.out.println("AAAA");
+                if (usedOscillators.containsKey(note)) {
+                    System.out.println("Skipping");
 
-                continue;
-            }
-            if(!freeOscillators.isEmpty()) {
-                System.out.println("Adding");
-                Oscillator o = freeOscillators.iterator().next();
-                freeOscillators.remove(o);
-                usedOscillators.put(note, o);
-                o.setFreq(note.toFreq());
-                o.setAmplitude(32f);
-            } else {
-                System.out.println("No oscillators left to use!");
+                    continue;
+                }
+                if (!freeOscillators.isEmpty()) {
+                    System.out.println("Adding");
+                    Oscillator o = freeOscillators.iterator().next();
+                    freeOscillators.remove(o);
+                    usedOscillators.put(note, o);
+                    o.setFreq(note.toFreq());
+                    o.setAmplitude(32f);
+                } else {
+                    System.out.println("No oscillators left to use!");
+                }
             }
         }
     }
-
 }

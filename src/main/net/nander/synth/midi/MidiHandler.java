@@ -1,5 +1,8 @@
 package net.nander.synth.midi;
+import net.nander.synth.notes.NoteStateAcceptor;
 import net.nander.synth.notes.SynthBank;
+import net.nander.synth.notes.SynthBankFactory;
+import net.nander.synth.notes.modulators.Appegiator;
 import net.nander.synth.scheduling.Scheduler;
 import net.nander.synth.synthModules.ConsumerModule;
 import net.nander.synth.synthModules.modulators.Mixer;
@@ -16,7 +19,7 @@ import java.util.Set;
 
 public class MidiHandler {
 
-    public MidiHandler(SynthBank bank) {
+    public MidiHandler(NoteStateAcceptor bank) {
         MidiDevice device;
         MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
         for (int i = 0; i < infos.length; i++) {
@@ -55,25 +58,12 @@ public class MidiHandler {
 
     }
     public static void main(String[] args){
-        Set<Oscillator> oscs = new HashSet<>();
-        Mixer m = new Mixer();
-        for(int i=0;i<8; i++){
-            SawtoothOscillator o = new SawtoothOscillator();
-            oscs.add(o);
-            o.connect(m, i);
-            o.setAmplitude(0);
-            Scheduler.addTaskDirectly(o);
-        }
+        Appegiator a = new Appegiator(300);
+        Scheduler.addTaskDirectly(a);
 
-        ConsumerModule s = new Speaker();
-        m.connect(s);
-        Scheduler.addTaskDirectly(s);
-        Scheduler.addTaskDirectly(m);
-        SynthBank b = new SynthBank(oscs);
+        SynthBank b = SynthBankFactory.speakeredSynthBank(8);
 
-
-        new MidiHandler(b);
-        Scheduler.configFreeRun();
-
+        new MidiHandler(a);
+        a.setNextNodeState(b);
     }
 }
